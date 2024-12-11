@@ -4,7 +4,7 @@ import os
 API_ID = int(os.getenv("API_ID", ""))
 API_HASH = os.getenv("API_HASH", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-BOT_ADMIN = os.getenv("BOT_ADMIN", "") #Admin Userid
+BOT_ADMIN = int(os.getenv("BOT_ADMIN", "")) #Admin Userid
 
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "DypixxTech")
 

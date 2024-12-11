@@ -1,10 +1,10 @@
 import os
 
 # MAIN VARS
-API_ID = os.getenv("API_ID", "22532891")
-API_HASH = os.getenv("API_HASH", "f2b6b1f0570fe18c8213e64c477a81d2")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "7945042409:AAH5DenGtrLsrrfEjPzyQQju_UARa2ubrOY")
-BOT_ADMIN = os.getenv("BOT_ADMIN", "1782834874") #Admin Userid
+API_ID = os.getenv("API_ID", "")
+API_HASH = os.getenv("API_HASH", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+BOT_ADMIN = os.getenv("BOT_ADMIN", "") #Admin Userid
 
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "DypixxTech")
 

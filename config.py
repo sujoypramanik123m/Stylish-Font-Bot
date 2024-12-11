@@ -1,7 +1,7 @@
 import os
 
 # MAIN VARS
-API_ID = os.getenv("API_ID", "")
+API_ID = int(os.getenv("API_ID", ""))
 API_HASH = os.getenv("API_HASH", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 BOT_ADMIN = os.getenv("BOT_ADMIN", "") #Admin Userid

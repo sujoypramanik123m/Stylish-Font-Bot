@@ -7,6 +7,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 BOT_ADMIN = int(os.getenv("BOT_ADMIN", "")) #Admin Userid
 
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "DypixxTech")
+DUMP_CHANNEL = int(os.getenv("DUMP_CHANNEL", ""))
 
 # FLOOD WAIT SETTINGS 
 ENABLE_FLOOD_WAIT = bool(os.getenv("ENABLE_FLOOD_WAIT", True)) # Set "True" For Enable Floodwait

@@ -84,10 +84,10 @@ async def download_instagram_content(client, message):
             if file_path.endswith((".mp4", ".jpg", ".png")):
                 if file_path.endswith(".mp4"):
                     await message.reply_video(video=file_path)
-                    await app.send_video(chat_id=DUMP_CHANNEL, video=file_path, caption=f"**Downloaded By {message.from_user.mention}**")
+                    await app.send_video(chat_id=DUMP_CHANNEL, video=file_path, caption=f"**Downloaded By {message.from_user.mention}\n\nSource : {url}**")
                 else:
                     await message.reply_document(document=file_path)
-                    await app.send_document(chat_id=DUMP_CHANNEL, document=file_path, caption=f"**Downloaded By {message.from_user.mention}**")
+                    await app.send_document(chat_id=DUMP_CHANNEL, document=file_path, caption=f"**Downloaded By {message.from_user.mention}\n\nSource : {url}**")
                     total_photos += 1
                 os.remove(file_path)
 

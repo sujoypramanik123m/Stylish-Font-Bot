@@ -83,11 +83,11 @@ async def download_instagram_content(client, message):
             file_path = os.path.join(download_dir, file)
             if file_path.endswith((".mp4", ".jpg", ".png")):
                 if file_path.endswith(".mp4"):
-                    await message.reply_video(video=file_path)
                     await app.send_video(chat_id=DUMP_CHANNEL, video=file_path, caption=f"**Downloaded By {message.from_user.mention}\n\nSource : {url}**")
+                    await message.reply_video(video=file_path)
                 else:
-                    await message.reply_document(document=file_path)
                     await app.send_document(chat_id=DUMP_CHANNEL, document=file_path, caption=f"**Downloaded By {message.from_user.mention}\n\nSource : {url}**")
+                    await message.reply_document(document=file_path)
                     total_photos += 1
                 os.remove(file_path)
 
@@ -100,7 +100,6 @@ async def download_instagram_content(client, message):
     except Exception as e:
         await message.reply(f"𝖤𝗋𝗋𝗈𝗋 𝗈𝖼𝖼𝗎𝗋𝗋𝖾𝖽: {str(e)}")
 
-
 # ============== #
 # CALLBACKS DATA
 # ============== #
@@ -108,16 +107,60 @@ async def download_instagram_content(client, message):
 @app.on_callback_query()
 async def callback_query_handler(client, query: CallbackQuery):
     if query.data == "help":
-        await query.message.edit_text(HELP_TXT, reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton('About', callback_data='about'),
-              InlineKeyboardButton('Back', callback_data='back')]]))
+        await query.message.edit_text(
+            HELP_TXT, 
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton('About', callback_data='about'),
+                        InlineKeyboardButton('Back', callback_data='back')
+                    ]
+                ]
+            )
+        )
     elif query.data == "about":
-        await query.message.edit_text(ABOUT_TXT, reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton('Help', callback_data='help')],
-             [InlineKeyboardButton('Back', callback_data='back'),
-              InlineKeyboardButton('Source Code', user_id=int(BOT_ADMIN))]]))
+        await query.message.edit_text(
+            ABOUT_TXT, 
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton('Help', callback_data='help')
+                    ],
+                    [
+                        InlineKeyboardButton('Back', callback_data='back'),
+                        InlineKeyboardButton('Source Code', user_id=int(BOT_ADMIN))
+                    ]
+                ]
+            )
+        )
+    elif query.data == "refresh_floodwait":
+        current_time = time.time()
+        last_download_time = user_last_download_time.get(query.message.chat.id, 0)
+        remaining_time = FLOOD_WAIT_TIME - (current_time - last_download_time)
+        if remaining_time > 0:
+            minutes, seconds = divmod(int(remaining_time), 60)
+            time_text = (
+                f"{minutes} 𝗆𝗂𝗇𝗎𝗍𝖾 & {seconds} 𝗌𝖾𝖼𝗈𝗇𝖽𝗌" if minutes > 0 else f"{seconds} 𝗌𝖾𝖼𝗈𝗇𝖽𝗌"
+            )
+            await query.message.edit_text(
+                f"𝖸𝗈𝗎 𝖼𝖺𝗇 𝖽𝗈𝗐𝗇𝗅𝗈𝖺𝖽 𝖺𝗇𝗈𝗍𝗁𝖾𝗋 𝖼𝗈𝗇𝗍𝖾𝗇𝗍 𝖺𝖿𝗍𝖾𝗋 {time_text}!",
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Refresh ⟳", callback_data="refresh_floodwait")]]))
+        else:
+            user_last_download_time[query.message.chat.id] = current_time
+            await query.message.edit_text("𝖭𝗈𝗐 𝖸𝗈𝗎 𝖢𝖺𝗇 𝖴𝗌𝖾 𝖬𝖾!")
     elif query.data == "back":
-        await query.message.edit_text(START_TXT.format(query.from_user.mention), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help", callback_data="help"), InlineKeyboardButton("About", callback_data="about")]]))
+        await query.message.edit_text(
+            START_TXT.format(query.from_user.mention),
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Help", callback_data="help"),
+                        InlineKeyboardButton("About", callback_data="about")
+                    ]
+                ]
+            )
+        )
+
 
 app.run()
 # Developer: @Dypixx, Dont Remove Credits.

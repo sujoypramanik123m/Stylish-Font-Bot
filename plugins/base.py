@@ -1,3 +1,6 @@
+#The repo is fully coded and modified by @Dypixx.
+#Please do not sell or remove credits.
+
 from pyrogram import Client, filters
 from pyrogram.errors import *
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery

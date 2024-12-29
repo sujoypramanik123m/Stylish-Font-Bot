@@ -12,10 +12,12 @@
 - koyeb
 - Render
 
-## Start & Build Commands
+## Build Command
 ```
 pip install -r requirements.txt
 ```
+
+## Start Command
 ```
 gunicorn app:app & python3 bot.py
 ```

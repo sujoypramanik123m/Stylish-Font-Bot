@@ -1,3 +1,6 @@
+#The repo is fully coded and modified by @Dypixx.
+#Please do not sell or remove credits.
+
 from flask import Flask
 app = Flask(__name__)
 

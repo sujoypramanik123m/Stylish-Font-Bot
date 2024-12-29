@@ -1,3 +1,6 @@
+#The repo is fully coded and modified by @Dypixx.
+#Please do not sell or remove credits.
+
 import os
 
 API_ID = os.getenv("API_ID", "")

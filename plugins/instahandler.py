@@ -6,6 +6,7 @@ import shutil, time, os, instaloader, asyncio
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from config import *
+from Script import txt
 
 user_last_download_time = {}
 
@@ -23,7 +24,7 @@ async def download_instagram_content(client, message):
                     return
             except UserNotParticipant:
                 await message.reply_text(
-                    text=FORCE_SUBSCRIBE_TEXT.format(message.from_user.mention),
+                    text=txt.FORCE_SUBSCRIBE_TEXT.format(message.from_user.mention),
                     reply_markup=InlineKeyboardMarkup(
                         [[InlineKeyboardButton("Jᴏɪɴ Cʜᴀɴɴᴇʟ", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
                     )

@@ -1,0 +1,56 @@
+{
+    "name": "Dypixx Bot",
+    "description": "A fully coded and modified bot by @Dypixx.",
+    "repository": "https://github.com/Dypixx/Instaloader",
+    "env": {
+      "API_ID": {
+        "description": "Your Telegram API ID",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Your Telegram API Hash",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "Your Telegram Bot Token",
+        "required": true
+      },
+      "ADMIN": {
+        "description": "Bot Admin User ID",
+        "required": true
+      },
+      "DUMP_CHANNEL": {
+        "description": "Channel ID for dump",
+        "required": true
+      },
+      "LOG_CHANNEL": {
+        "description": "Log channel ID",
+        "required": true
+      },
+      "DB_URI": {
+        "description": "MongoDB connection URI",
+        "required": true
+      },
+      "DB_NAME": {
+        "description": "Database name",
+        "required": true
+      },
+      "FSUB": {
+        "description": "Enable Force Subscribe (True/False)",
+        "required": true
+      },
+      "AUTH_CHANNEL": {
+        "description": "Authorized channel IDs (separated by spaces)",
+        "required": true
+      },
+      "ENABLE_FLOOD_WAIT": {
+        "description": "Enable Flood Wait (True/False)",
+        "required": false
+      },
+      "FLOOD_WAIT_TIME": {
+        "description": "Flood Wait Time in Seconds",
+        "required": false
+      }
+    }
+  }
+  

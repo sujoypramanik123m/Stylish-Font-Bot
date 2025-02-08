@@ -1,8 +1,6 @@
 #The repo is fully coded and modified by @Dypixx..
 #Please do not sell or remove credits.
 
-import os
-
 class txt(object):
   START_TXT = """<b>Hᴇʏ, {}!
 
@@ -22,7 +20,7 @@ Fᴏʀ ᴍᴏʀᴇ ɪɴғᴏ, ᴄʟɪᴄᴋ ᴏɴ ʜᴇʟᴘ ✅
 Lɪʙʀᴀʀʏ: Pʏʀᴏɢʀᴀᴍ 📚
 Lᴀɴɢᴜᴀɢᴇ: Pʏᴛʜᴏɴ 🐍
 Sᴇʀᴠᴇʀ: Rᴇɴᴅᴇʀ 🌐
-Bᴜɪʟᴅ Sᴛᴀᴛᴜs: V1.1 🚀
+Bᴜɪʟᴅ Sᴛᴀᴛᴜs: V1.3 🚀
 Sᴏᴜʀᴄᴇ Cᴏᴅᴇ: Aᴠᴀɪʟᴀʙʟᴇ (Fʀᴇᴇ) 💻 
 
 <blockquote>𝖬𝖺𝖽𝖾 𝖡𝗒 @Dypixx</blockquote></b>"""

@@ -6,6 +6,8 @@
 - Enable Floodwait Mode
 - Force Subscribe
 - Easy to Deploy 
+- Database Added
+- Ban / Unban &  Broadcast Feature
 
 ## Deploy On
 - Seenode

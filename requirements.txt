@@ -1,6 +1,7 @@
-pyrofork
+pyrofork>=2.3.58
 tgcrypto
 instaloader
+motor
 
 # For Web Deployable
 Flask==1.1.2

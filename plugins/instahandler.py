@@ -3,49 +3,31 @@
 
 from pyrogram import Client, filters
 import shutil, time, os, instaloader, asyncio
-from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.errors import *
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import *
-from Script import txt
+from .fsub import get_fsub
+from .db import data
 
 user_last_download_time = {}
-
-@Client.on_message(filters.text)
+@Client.on_message(filters.text & filters.private)
 async def download_instagram_content(client, message):
-    if message.text.startswith("/"):
+    if message.text.startswith("/"):return
+    if await data.is_user_banned(message.from_user.id):
+        await message.reply("**🚫 You are banned from using this bot**",
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Support", user_id=int(ADMIN))]]))
         return
-
+    if IS_FSUB and not await get_fsub(client, message):return
     try:
-        if UPDATE_CHANNEL:
-            try:
-                user = await client.get_chat_member(UPDATE_CHANNEL, message.chat.id)
-                if user.status == "kicked":
-                    await message.reply_text("**Yᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ꜰʀᴏᴍ ᴜꜱɪɴɢ ᴛʜɪꜱ ʙᴏᴛ..**")
-                    return
-            except UserNotParticipant:
-                await message.reply_text(
-                    text=txt.FORCE_SUBSCRIBE_TEXT.format(message.from_user.mention),
-                    reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton("Jᴏɪɴ Cʜᴀɴɴᴇʟ", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
-                    )
-                )
-                return
-            except Exception as error:
-                print(error)
-                await message.reply_text(f"{str(error)}")
-                return
-                
         if ENABLE_FLOOD_WAIT:
             current_time = time.time()
             last_download_time = user_last_download_time.get(message.chat.id, 0)
             remaining_time = FLOOD_WAIT_TIME - (current_time - last_download_time)
-
             if remaining_time > 0:
                 T = await message.reply_text("**Pʟᴇᴀsᴇ ᴡᴀɪᴛ...**")
                 while remaining_time > 0:
                     minutes, seconds = divmod(int(remaining_time), 60)
                     time_text = f"{minutes}m{seconds}s" if minutes > 0 else f"{seconds}s"
-
                     try:
                         await T.edit_text(
                             f"**Pʟᴇᴀsᴇ ᴡᴀɪᴛ {time_text} ʙᴇғᴏʀᴇ ᴍᴀᴋɪɴɢ ᴀɴᴏᴛʜᴇʀ ʀᴇǫᴜᴇsᴛ.**"
@@ -53,7 +35,6 @@ async def download_instagram_content(client, message):
                     except Exception as e:
                         print(f"Error updating flood wait text: {e}")
                         break
-
                     await asyncio.sleep(1)
                     current_time = time.time()
                     remaining_time = FLOOD_WAIT_TIME - (current_time - last_download_time)
@@ -67,6 +48,7 @@ async def download_instagram_content(client, message):
         if not url.startswith("https://www.instagram.com/"):
             await message.reply("**Pʟᴇᴀsᴇ sᴇɴᴅ ᴀ ᴠᴀʟɪᴅ Iɴsᴛᴀɢʀᴀᴍ ᴘᴏsᴛ/ʀᴇᴇʟ ʟɪɴᴋ...**")
             return
+        T = await message.reply("**Pʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛ...**")
         L = instaloader.Instaloader()
         download_dir = "downloads"
         os.makedirs(download_dir, exist_ok=True)
@@ -75,9 +57,9 @@ async def download_instagram_content(client, message):
             post = instaloader.Post.from_shortcode(L.context, shortcode)
             L.download_post(post, target=download_dir)
         else:
+            await T.delete()
             await message.reply("**Pʟᴇᴀsᴇ sᴇɴᴅ ᴀ ʀᴇᴇʟ ᴏʀ ᴘᴏsᴛ ʟɪɴᴋ.**")
             return
-        T = await message.reply("**Pʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛ...**")
         downloaded_files = os.listdir(download_dir)
         total_photos = 0
         total_videos = 0
@@ -109,7 +91,6 @@ async def download_instagram_content(client, message):
                     total_photos += 1
                 elif file_path.endswith('.mp4'):
                     os.remove(file_path)
-
         shutil.rmtree(download_dir)
         await T.delete()
         if total_photos > 0 and total_videos == 0:
@@ -118,7 +99,6 @@ async def download_instagram_content(client, message):
             await message.reply(f"**Dᴏᴡɴʟᴏᴀᴅᴇᴅ {total_videos} ᴠɪᴅᴇᴏ's sᴜᴄᴄᴇssғᴜʟʟʏ...**")
         else:
             await message.reply("**Nᴏ ᴠᴀʟɪᴅ ᴄᴏɴᴛᴇɴᴛ ғᴏᴜɴᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ...**")
-
     except FloodWait as e:
         await message.reply_text(f"Please wait {e.value} seconds and try again.")
     except InputUserDeactivated:

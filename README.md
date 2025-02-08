@@ -8,11 +8,13 @@
 - Easy to Deploy 
 - Database Added
 - Ban / Unban &  Broadcast Feature
+- Multi Fsub Feature
 
 ## Deploy On
-- Seenode
-- koyeb
-- Render
+- Seenode (Paid)
+- koyeb (Free)
+- Render (Free)
+- Heroku (Paid)
 
 ## Build Command
 ```

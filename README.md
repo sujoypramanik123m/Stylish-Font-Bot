@@ -27,4 +27,4 @@ gunicorn app:app & python3 bot.py
 ```
 
 ## Developer
-- This Repo Design, coded, Develop & modified by [Dypixx](https://dypixx.vercel.app).
+- This Repo Design, coded, Develop & modified by [Dypixxx](https://dypixx.vercel.app).

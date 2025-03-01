@@ -30,7 +30,7 @@ async def callback_query_handler(client, query: CallbackQuery):
                         InlineKeyboardButton('Help', callback_data='help')
                     ],
                     [
-                        InlineKeyboardButton('Source Code', url="https://github.com/Dypixx/Instaloader"),
+                        InlineKeyboardButton('Source Code', url="https://github.com/TechifyBots/Instagram-Bot"),
                         InlineKeyboardButton('Back', callback_data='back')
                     ]
                 ]

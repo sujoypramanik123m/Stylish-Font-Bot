@@ -1,4 +1,4 @@
-#The repo is fully coded and modified by @Dypixx.
+#The repo is fully coded and modified by @Dypixxx.
 #Please do not sell or remove credits.
 
 from pyrogram import Client, filters
@@ -10,7 +10,7 @@ from .fsub import get_fsub
 from .db import data
 
 user_last_download_time = {}
-@Client.on_message(filters.text & filters.private)
+@Client.on_message(filters.text & filters.private & ~filters.command(['start','ban', 'unban', 'broadcast']))
 async def download_instagram_content(client, message):
     if message.text.startswith("/"):return
     if await data.is_user_banned(message.from_user.id):

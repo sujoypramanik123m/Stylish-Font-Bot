@@ -1,7 +1,6 @@
-import asyncio, random
+import asyncio, random, uuid
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from config import EMOJIS
 from .fonts import Fonts
 
 font_styles = [
@@ -15,11 +14,13 @@ font_styles = [
     Fonts.arrows, Fonts.rvnes, Fonts.strike, Fonts.frozen
 ]
 
-async def send_fonts_page(c: Client, msg, page: int, user_text: str, edit=False):
+font_text_cache = {}
+
+async def send_fonts_page(c: Client, msg, page: int, text_id: str, user_text: str, edit=False):
     start_index = (page - 1) * 10
     end_index = start_index + 10
     fonts_for_page = font_styles[start_index:end_index]
-    
+
     font_message = ""
     for index, style in enumerate(fonts_for_page, start_index + 1):
         styled_text = style(user_text)
@@ -28,22 +29,38 @@ async def send_fonts_page(c: Client, msg, page: int, user_text: str, edit=False)
     font_message += "Note: Click on any font to copy it."
 
     buttons = []
-
     if page > 1:
-        buttons.append(InlineKeyboardButton("⬅️ Back", callback_data=f"back_{page}_{user_text}"))
-
+        buttons.append(InlineKeyboardButton("⬅️ Back", callback_data=f"back_{page}_{text_id}"))
     if end_index < len(font_styles):
-        buttons.append(InlineKeyboardButton("Next ➡️", callback_data=f"next_{page}_{user_text}"))
+        buttons.append(InlineKeyboardButton("Next ➡️", callback_data=f"next_{page}_{text_id}"))
     else:
         buttons.append(InlineKeyboardButton("❌ Close", callback_data="close"))
 
     markup = InlineKeyboardMarkup([buttons])
 
     if edit:
-        await msg.edit_text(font_message, reply_markup=markup)
+        sent_msg = await msg.edit_text(font_message, reply_markup=markup)
     else:
-        await msg.reply_text(font_message, reply_markup=markup)
+        sent_msg = await msg.reply_text(font_message, reply_markup=markup)
+
+    async def delete_later():
+        await asyncio.sleep(120)
+        try:
+            await sent_msg.delete()
+        except:
+            pass
+
+    asyncio.create_task(delete_later())
 
 @Client.on_message(filters.private & filters.text & ~filters.command(["start", "users", "broadcast"]))
 async def font_converter(c: Client, m: Message):
-    await send_fonts_page(c, m, page=1, user_text=m.text, edit=False)
+    text_id = str(uuid.uuid4())[:8]
+    font_text_cache[text_id] = m.text
+
+    async def remove_later():
+        await asyncio.sleep(120)
+        font_text_cache.pop(text_id, None)
+
+    asyncio.create_task(remove_later())
+
+    await send_fonts_page(c, m, page=1, text_id=text_id, user_text=m.text, edit=False)

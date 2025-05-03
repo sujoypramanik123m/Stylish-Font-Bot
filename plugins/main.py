@@ -1,4 +1,4 @@
-import asyncio, random, uuid
+import asyncio, uuid
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from .fonts import Fonts

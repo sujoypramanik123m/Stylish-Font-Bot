@@ -46,9 +46,4 @@ async def send_fonts_page(c: Client, msg, page: int, user_text: str, edit=False)
 
 @Client.on_message(filters.private & filters.text & ~filters.command(["start", "users", "broadcast"]))
 async def font_converter(c: Client, m: Message):
-    try:
-        await m.react(random.choice(EMOJIS))
-    except Exception as e:
-        print(f"Reaction error: {e}")
-    
     await send_fonts_page(c, m, page=1, user_text=m.text, edit=False)

@@ -52,7 +52,7 @@ async def send_fonts_page(c: Client, msg, page: int, text_id: str, user_text: st
 
     asyncio.create_task(delete_later())
 
-@Client.on_message(filters.private & filters.text & ~filters.command(["start", "users", "broadcast"]))
+@Client.on_message(filters.private & filters.text & ~filters.command(["start", "stats", "broadcast"]))
 async def font_converter(c: Client, m: Message):
     text_id = str(uuid.uuid4())[:8]
     font_text_cache[text_id] = m.text

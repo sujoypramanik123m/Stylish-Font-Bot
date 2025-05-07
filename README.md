@@ -33,15 +33,12 @@
 - `AUTH_CHANNELS` : Your FSUB channels ID.
 </details>
 
-### 🥳 CREDIT
+### 💞 CREDIT
 - [TechifyBots](https://github.com/TechifyBots)
 
-### 💕 CONTACT DEVELOPER
-- [Rahul](https://telegram.me/TechifySupport)
+### 😇 [SUPPORT](https://techifybots.github.io/PayWeb)
 
-### ☕ BUY ME A COFFEE
-- [PayPal](https://paypal.me/TechifyBots)
-- [UPI](https://TechifyBots.github.io/Donate)
+### 🥳 [DEVELOPER](https://instagram.com/TechifyRahul)
 
 ### 📌 NOTE
 

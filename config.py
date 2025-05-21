@@ -3,7 +3,7 @@ from typing import List
 
 API_ID = os.environ.get("API_ID", "22182189")
 API_HASH = os.environ.get("API_HASH", "5e7c4088f8e23d0ab61e29ae11960bf5")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "7316620198:AAHpCMYvZEtGPRKIFij_8Cs8QR6LAm5V4Dg")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 ADMIN = int(os.environ.get("ADMIN", "8181241262"))
 
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002527940153"))

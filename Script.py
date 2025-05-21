@@ -5,7 +5,7 @@ Welcome to Stylish Font Bot ✨ – Instantly convert any text into 40+ cool and
 
 Just send any text in this chat, and I’ll give you a list of styled versions you can copy and use anywhere.
 
-<blockquote>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/TechifyRahul'>ʀᴀʜᴜʟ</a></blockquote></b>"""
+<blockquote>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/UncleChipssBot'>Sᴜᴊᴏʏ 👑</a></blockquote></b>"""
 
     FORCE_SUBSCRIBE = """<b>{},
 
@@ -25,9 +25,9 @@ Lᴀɴɢᴜᴀɢᴇ: Pʏᴛʜᴏɴ 🐍
 Fᴜɴᴄᴛɪᴏɴ: Tᴇxᴛ ➜ Sᴛʏʟɪsʜ Fᴏɴᴛs 🎨  
 Sᴇʀᴠᴇʀ: Rᴇɴᴅᴇʀ 🌐  
 Vᴇʀsɪᴏɴ: V1.0 🚀  
-Sᴏᴜʀᴄᴇ: Aᴠᴀɪʟᴀʙʟᴇ (Fʀᴇᴇ) 💻  
+Sᴏᴜʀᴄᴇ: Pᴀɪᴅ (@UncleChipssBot) 💻  
 
-<blockquote>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/TechifyRahul'>ʀᴀʜᴜʟ</a></blockquote></b>"""
+<blockquote>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/UncleChipssBot'>Sᴜᴊᴏʏ 👑</a></blockquote></b>"""
 
     HELP = """<b>✨ Hᴏᴡ ᴛᴏ Usᴇ:
 

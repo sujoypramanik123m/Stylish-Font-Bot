@@ -20,7 +20,7 @@ async def start_cmd(client, message):
         text.START.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about'), InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help')],
-            [InlineKeyboardButton('♻ ᴅᴇᴠᴇʟᴏᴘᴇʀ ♻', url='https://telegram.me/TechifyRahul')]
+            [InlineKeyboardButton('♻ ᴅᴇᴠᴇʟᴏᴘᴇʀ ♻', url='https://telegram.me/UncleChipssBot')]
         ]),
         disable_web_page_preview=True
     )
